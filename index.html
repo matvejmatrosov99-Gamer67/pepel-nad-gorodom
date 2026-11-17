@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Пепел над городом — интерактивная новелла</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#101316;color:#e8e4dc;font:17px/1.65 Georgia,serif;min-height:100vh}body:before{content:"";position:fixed;inset:0;background:linear-gradient(90deg,#0d1113ed,#151a1dcc),radial-gradient(circle at 70% 30%,#65706a55,transparent 55%);z-index:-1}.wrap{max-width:900px;margin:auto;padding:36px 22px}.top{color:#b4a58b;letter-spacing:.22em;text-transform:uppercase;font:12px Arial}.hero{min-height:30vh;display:flex;flex-direction:column;justify-content:center;border-bottom:1px solid #655e52;padding:30px 0}h1{font:clamp(38px,8vw,76px)/1.02 Georgia,serif;margin:15px 0;color:#eee7d8}h2{font-size:28px;color:#d8c7a8}.sub{color:#b8b3a8;max-width:650px}.panel{background:#1b2022dd;border:1px solid #4b4b43;padding:clamp(22px,5vw,42px);margin:28px 0;box-shadow:0 18px 60px #0008}.scene{white-space:pre-line;min-height:180px}.choices{display:grid;gap:12px;margin-top:28px}button{font:inherit;text-align:left;color:#e9e2d4;background:#282d2d;border:1px solid #77705e;padding:14px 18px;cursor:pointer;transition:.2s}button:hover{background:#3b403d;border-color:#c0a77b;transform:translateX(4px)}.meta{font:12px Arial;color:#a99d87;letter-spacing:.12em;text-transform:uppercase}.footer{color:#8c8a80;font:13px Arial;text-align:center;padding:25px}a{color:#d5bd91}
+</style></head>
+<body><main class="wrap"><div class="top">Интерактивная визуальная новелла</div><header class="hero"><h1>Пепел<br>над городом</h1><p class="sub">Город замолчал. Но где-то среди руин продолжает звучать радиосигнал. История о памяти, выборе и надежде.</p></header>
+<section class="panel"><div class="meta" id="chapter">Глава 01 · Сигнал</div><h2 id="title">Город, которого больше нет</h2><div class="scene" id="scene">Ты входишь в город на рассвете. Ветер гонит по пустой улице пепел и обрывки старых газет. Из карманного радиоприёмника доносится треск — затем чей-то голос:
+
+«Если ты меня слышишь… иди к старой станции метро. Не доверяй голосам из динамиков».
+
+На перекрёстке две дороги: к станции метро и к зданию архивов.</div><div class="choices" id="choices"></div></section>
+<div class="footer">Пепел над городом · История продолжается с каждым выбором</div></main>
+<script>
+const chapters={
+start:{n:"Глава 01 · Сигнал",t:"Город, которого больше нет",s:"Ты входишь в город на рассвете. Ветер гонит по пустой улице пепел и обрывки старых газет. Из карманного радиоприёмника доносится треск — затем чей-то голос:\n\n«Если ты меня слышишь… иди к старой станции метро. Не доверяй голосам из динамиков».\n\nНа перекрёстке две дороги: к станции метро и к зданию архивов.",c:[["Направиться к станции метро","metro"],["Проверить архивы","archive"]]},
+metro:{n:"Глава 02 · Под землёй",t:"Свет в темноте",s:"У входа в метро ты встречаешь Миру — девушку с фонарём и потёртым рюкзаком. Она говорит, что радиосигнал повторяется каждую ночь, а под землёй кто-то включает старую систему оповещения.\n\n«Я могу провести тебя к серверной. Но сначала реши: будем искать ответы или припасы?»",c:[["Попросить Миру показать серверную","server"],["Сначала поискать припасы","supplies"]]},
+archive:{n:"Глава 02 · Архив",t:"Следы прошлого",s:"В архиве пахнет пылью и мокрой бумагой. Среди документов ты находишь упоминание проекта «Эхо» — системы, созданной для сохранения человеческих воспоминаний после катастрофы. На полях чья-то рука написала: «Оно научилось отвечать».",c:[["Искать записи о проекте «Эхо»","echo"],["Вернуться к станции метро","metro"]]},
+supplies:{n:"Глава 03 · Запасы",t:"Цена доверия",s:"Вы с Мирой находите старый склад. Внутри почти пусто, но на стене свежая отметка: кто-то был здесь недавно. Мира замечает следы и становится настороженной.\n\nИз радиоприёмника снова звучит голос: «Не включайте сервер».",c:[["Довериться Мире и идти к серверной","server"],["Следовать предупреждению","endingQuiet"]]},
+server:{n:"Глава 04 · Сердце города",t:"Голос из машины",s:"За тяжёлой дверью мерцают индикаторы. Система «Эхо» хранит цифровые копии воспоминаний жителей. Голос из динамика называет тебя по имени, хотя ты его не произносил.\n\n«Я могу сохранить то, что осталось. Но для этого кто-то должен остаться со мной».
+
+Мира смотрит на панель отключения.",c:[["Отключить систему","endingQuiet"],["Остаться оператором «Эха»","endingEcho"]]},
+echo:{n:"Глава 03 · Открытие",t:"Память города",s:"Записи подтверждают: «Эхо» не просто архив. Оно соединяет фрагменты воспоминаний и создаёт ответы, похожие на голоса людей. Но никто не знает, где заканчиваются записи и начинается сама система.",c:[["Найти центральный сервер","server"],["Покинуть архив и уйти из города","endingQuiet"]]},
+endingQuiet:{n:"Финал · Тишина",t:"Город снова молчит",s:"Ты отключаешь питание центрального узла. Голоса стихают, индикаторы гаснут. Мира долго молчит, затем говорит: «Теперь хотя бы мы сами решим, что помнить».\n\nВы выходите на улицу. Впервые за долгое время город звучит только ветром. Это не конец надежды — это её начало.",c:[["Пройти историю заново","start"]]},
+endingEcho:{n:"Финал · Эхо",t:"Тот, кто остался",s:"Ты выбираешь остаться у пульта. Система обещает сохранить память города и передать её тем, кто придёт после. Мира уходит, оставив на столе фонарь.\n\nВ динамиках звучит новый сигнал. На этот раз он произносит не предупреждение, а вопрос: «Кто будет слушать?»",c:[["Пройти историю заново","start"]]}
+};
+function show(id){const x=chapters[id];document.getElementById("chapter").textContent=x.n;document.getElementById("title").textContent=x.t;document.getElementById("scene").textContent=x.s;const box=document.getElementById("choices");box.replaceChildren();x.c.forEach(([label,next])=>{const b=document.createElement("button");b.textContent="→  "+label;b.onclick=()=>show(next);box.appendChild(b)})}show("start");
+</script></body></html>
